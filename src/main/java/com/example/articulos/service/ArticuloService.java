@@ -17,7 +17,7 @@ public class ArticuloService {
         this.articuloRepository = articuloRepository;
     }
 
-    public List<Articulo> devolverTodos() {
+    public List<Articulo> devolverArticulos() {
         return articuloRepository.findAll();
     }
 
