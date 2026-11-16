@@ -2,6 +2,9 @@ package com.example.articulos.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.articulos.exception.ArticuloNoEncontradoException;
 import com.example.articulos.model.Articulo;
 import com.example.articulos.service.ArticuloService;
 
@@ -31,7 +35,7 @@ public class ArticuloController {
     @GetMapping("/{id}")
     public Articulo buscarPorId(@PathVariable Long id) {
         return articuloService.buscarPorId(id)
-        .orElseThrow(() -> new RuntimeException("Articulo no encontrado"));
+        .orElseThrow(() -> new ArticuloNoEncontradoException("Articulo no encontrado"));
     }
 
     @PostMapping
@@ -45,7 +49,9 @@ public class ArticuloController {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarArticulo (@PathVariable Long id) {
-        articuloService.eliminarArticulo(id);
+    public ResponseEntity<Void> eliminarArticulo (@PathVariable Long id) {
+        articuloService.eliminarArticulo(id); 
+
+        return ResponseEntity.noContent().build();
     }
 }
