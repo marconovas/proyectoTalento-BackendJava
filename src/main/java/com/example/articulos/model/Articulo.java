@@ -20,7 +20,7 @@ public class Articulo {
 
     @Column(
         nullable = false,
-        length = 20
+        length = 100
     )
     private String nombre;
 
