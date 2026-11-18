@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice 
 public class GlobalExceptionHandler {
-    @ExceptionHandler(ArticuloNoEncontradoException.class)
-    public ResponseEntity<String> manejarArticuloNoEncontrado( 
-        ArticuloNoEncontradoException ex
+    @ExceptionHandler(RecursoNoEncontradoException.class)
+    public ResponseEntity<String> manejarRecursoNoEncontrado( 
+        RecursoNoEncontradoException ex
     ) {
         return ResponseEntity
             .status(HttpStatus.NOT_FOUND)

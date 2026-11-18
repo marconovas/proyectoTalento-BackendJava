@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.articulos.exception.RecursoNoEncontradoException;
 import com.example.articulos.model.Categoria;
 import com.example.articulos.repository.CategoriaRepository;
 
@@ -30,7 +31,7 @@ public class CategoriaService {
     }
 
     public Categoria modificarCategoria(Long id, Categoria categoria) {
-        Categoria categoriaEncontrada = buscarPorId(id).orElseThrow(() -> new RuntimeException("No existe la categoria."));
+        Categoria categoriaEncontrada = buscarPorId(id).orElseThrow(() -> new RecursoNoEncontradoException("No existe la categoria."));
 
         categoriaEncontrada.setNombre(categoria.getNombre());
 
@@ -40,7 +41,7 @@ public class CategoriaService {
 
     public void eliminarCategoria(Long id) {
         Categoria categoriaEncontrada = buscarPorId(id)
-        .orElseThrow(() -> new RuntimeException("No existe la categoria."));
+        .orElseThrow(() -> new RecursoNoEncontradoException("No existe la categoria."));
 
         categoriaRepository.delete(categoriaEncontrada);
     }
