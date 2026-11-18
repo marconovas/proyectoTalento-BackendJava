@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.example.articulos.exception.ArticuloNoEncontradoException;
 import com.example.articulos.exception.RecursoNoEncontradoException;
 import com.example.articulos.model.Articulo;
 import com.example.articulos.repository.ArticuloRepository;
