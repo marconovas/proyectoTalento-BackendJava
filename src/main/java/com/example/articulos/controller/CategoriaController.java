@@ -16,6 +16,8 @@ import com.example.articulos.exception.RecursoNoEncontradoException;
 import com.example.articulos.model.Categoria;
 import com.example.articulos.service.CategoriaService;
 
+import jakarta.validation.Valid;
+
 @RestController 
 @RequestMapping("/api/categorias")
 public class CategoriaController {
@@ -37,12 +39,12 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public Categoria guardarCategoria(@RequestBody Categoria categoria) {
+    public Categoria guardarCategoria(@Valid @RequestBody Categoria categoria) {
         return categoriaService.guardarCategoria(categoria);
     }
 
     @PutMapping("/{id}")
-    public Categoria modificarCategoria(@PathVariable Long id, @RequestBody Categoria categoria) {
+    public Categoria modificarCategoria(@PathVariable Long id, @Valid @RequestBody Categoria categoria) {
         return categoriaService.modificarCategoria(id, categoria);
     }
 
