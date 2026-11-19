@@ -10,6 +10,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 @Entity 
 @Table (
@@ -22,17 +27,21 @@ public class Articulo {
 
     @ManyToOne
     @JoinColumn(name = "categoria_id", nullable = false)
+    @NotNull (message = "La categoria es obligatoria.")
     private Categoria categoria;
 
     @Column(
         nullable = false,
         length = 100
     )
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size (min = 3, max = 100, message = "El nombre debe ser minimo 3 caracteres y no debe superar los 100 caracteres")
     private String nombre;
 
     @Column (
         length = 255
     )
+    @Size(max = 255, message = "La descripcion no puede superar los 255 caracteres.")
     private String descripcion;
 
     @Column (
@@ -40,11 +49,15 @@ public class Articulo {
         precision = 10,
         scale = 2 
     )
+    @NotNull (message = "El precio es obligatorio.")
+    @Positive (message = "EL precio no puede ser negativo.")
     private BigDecimal precio;
 
     @Column (
         nullable = false
     )
+    @NotNull (message = "El stock es obligatorio")
+    @PositiveOrZero (message = "El stock debe ser igual o mayor a 0.")
     private Integer stock;
 
     public Articulo() {

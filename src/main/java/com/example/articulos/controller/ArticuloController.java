@@ -16,6 +16,8 @@ import com.example.articulos.exception.RecursoNoEncontradoException;
 import com.example.articulos.model.Articulo;
 import com.example.articulos.service.ArticuloService;
 
+import jakarta.validation.Valid;
+
 @RestController 
 @RequestMapping("/api/articulos")
 public class ArticuloController {
@@ -37,12 +39,12 @@ public class ArticuloController {
     }
 
     @PostMapping
-    public Articulo crearArticulo(@RequestBody Articulo articulo) {
+    public Articulo crearArticulo(@Valid @RequestBody Articulo articulo) {
         return articuloService.guardarArticulo(articulo);
     }
 
     @PutMapping("/{id}")
-    public Articulo modificarArticulo(@PathVariable Long id, @RequestBody Articulo articulo) {
+    public Articulo modificarArticulo(@Valid @PathVariable Long id, @RequestBody Articulo articulo) {
         return articuloService.modificarArticulo(id, articulo);
     }
 
