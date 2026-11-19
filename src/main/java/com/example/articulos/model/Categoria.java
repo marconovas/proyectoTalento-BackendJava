@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity 
 @Table (
@@ -20,6 +22,8 @@ public class Categoria {
         nullable = false,
         length = 100
     )
+    @NotBlank (message = "El nombre es obligatorio y no puede estar vacío.")
+    @Size (min = 3, max = 100, message = "El nombre debe de tener 3 caracteres mínimo y 100 máximo.")
     private String nombre;
 
     public Categoria() {
