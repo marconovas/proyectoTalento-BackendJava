@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.articulos.exception.ArticuloNoEncontradoException;
+import com.example.articulos.exception.RecursoNoEncontradoException;
 import com.example.articulos.model.Articulo;
 import com.example.articulos.service.ArticuloService;
 
@@ -33,7 +33,7 @@ public class ArticuloController {
     @GetMapping("/{id}")
     public Articulo buscarPorId(@PathVariable Long id) {
         return articuloService.buscarPorId(id)
-        .orElseThrow(() -> new ArticuloNoEncontradoException("Articulo no encontrado"));
+        .orElseThrow(() -> new RecursoNoEncontradoException("Articulo no encontrado"));
     }
 
     @PostMapping

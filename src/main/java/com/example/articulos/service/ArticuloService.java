@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.example.articulos.exception.ArticuloNoEncontradoException;
+import com.example.articulos.exception.RecursoNoEncontradoException;
 import com.example.articulos.model.Articulo;
 import com.example.articulos.repository.ArticuloRepository;
 
@@ -31,7 +31,7 @@ public class ArticuloService {
     }
 
     public Articulo modificarArticulo(Long id, Articulo articulo) {
-        Articulo articuloBuscado = buscarPorId(id).orElseThrow(() -> new ArticuloNoEncontradoException("Articulo no encontrado."));
+        Articulo articuloBuscado = buscarPorId(id).orElseThrow(() -> new RecursoNoEncontradoException("Articulo no encontrado."));
 
         articuloBuscado.setNombre(articulo.getNombre());
         articuloBuscado.setDescripcion(articulo.getDescripcion());
@@ -42,7 +42,7 @@ public class ArticuloService {
     }
 
     public void eliminarArticulo(Long id) {
-        Articulo articuloBuscado = buscarPorId(id).orElseThrow(() -> new ArticuloNoEncontradoException("Articulo no encontrado."));
+        Articulo articuloBuscado = buscarPorId(id).orElseThrow(() -> new RecursoNoEncontradoException("Articulo no encontrado."));
 
         articuloRepository.delete(articuloBuscado);
     }
